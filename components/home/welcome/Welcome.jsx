@@ -14,14 +14,14 @@ import { icons,SIZES } from "../../../constants";
 
 const jobTypes = ["Full-Time", "Part-Time", "Internship" ,"Contractor"];
 
-const Welcome = () => {
+const Welcome = ( { searchTerm, setSearchTerm, handleClick}) => {
   const router = useRouter();
   const [activeJobType, setActiveJobType] = useState("Full-Time");
 
   return (
     <View>
       <View style={styles.container}>
-        <Text style={styles.userName}>Hello Aditi</Text>
+        <Text style={styles.userName}>Hello Aryan</Text>
         <Text style={styles.welcomeMessage}>Find your perfect job</Text>
       </View>
 
@@ -29,12 +29,12 @@ const Welcome = () => {
         <View style={styles.searchWrapper}>
           <TextInput 
           style={styles.searchInput}
-          value=""
-          onChange={()=>{}}
+          value={searchTerm}
+          onChange={(text)=> setSearchTerm(text)}
           placeholder="What are you looking for?" />
         </View>
 
-        <TouchableOpacity style={styles.searchBtn} onPress={()=>{}}>
+        <TouchableOpacity style={styles.searchBtn} onPress={handleClick}>
           <Image
           source={icons.search} 
             resizeMode="contain"
@@ -56,7 +56,7 @@ const Welcome = () => {
               <Text style={styles.tabText(activeJobType,item)}>{item}</Text>
             </TouchableOpacity>
          )}
-         keyExtractor={item => item} 
+         keyExtractor={(item) => item} 
           contentContainerStyle={{columnGap: SIZES.small}}
           horizontal
          />
