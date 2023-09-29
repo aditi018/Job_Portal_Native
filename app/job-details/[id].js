@@ -4,7 +4,7 @@ import { Stack, useRouter, useGlobalSearchParams } from "expo-router";
 import { Company, JobAbout, JobFooter, JobTabs, ScreenHeaderBtn, Specifics} from "../../components";
 import { COLORS, SIZES, icons } from "../../constants";
 import useFetch from "../../hook/useFetch";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 const tabs= ["About" , "Qualifications" , "Responsibilities"]
 
@@ -19,9 +19,11 @@ const JobDetails = () =>{
     const [refreshing, setRefreshing] = useState(false);
     const [activeTab, setActiveTab] = useState(tabs[0]);
 
-    const onRefresh = () => {
-
-    }
+    const onRefresh =useCallback(() =>{
+        setRefreshing(true);
+        reFetch();
+        setRefreshing(false);
+    },[])
 
     const displayTabContent = () => {
         switch (activeTab) {
